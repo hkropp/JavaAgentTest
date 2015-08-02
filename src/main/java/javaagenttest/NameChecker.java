@@ -16,7 +16,7 @@ public class NameChecker {
     }
     
     public boolean check(String name) {
-        System.out.println("AgentTestMain.check allowed: "+ name);
+        System.out.println("NameChecker.check allowed: "+ name);
         return true;
     }
     

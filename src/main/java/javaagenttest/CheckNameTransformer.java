@@ -35,29 +35,22 @@ public class CheckNameTransformer implements ClassFileTransformer {
 
         if (className.equals("javaagenttest/NameChecker")) {
             try {
-                
                 ClassPool cp = ClassPool.getDefault();
                 String curClassName = className.replaceAll("/", ".");
 
                 CtClass curClass = cp.get(curClassName);
-                
-                
                 CtMethod checkMethod = null ;
                 CtClass strClass = cp.get(String.class.getCanonicalName()) ;
                 CtClass[] paramArgs  = new CtClass[] { strClass } ;
                 
                 checkMethod = curClass.getDeclaredMethod("check", paramArgs);
-                
                 checkMethod.insertBefore("{if (javaagenttest.NameCheckerAgent.check($1) ){ /*System.out.println(\"Transformer\");*/ return false; } }");
                 
                 return curClass.toBytecode();
-            
             } catch (NotFoundException | CannotCompileException | IOException ex) {
                 Logger.getLogger(CheckNameTransformer.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
         return byteCode;
     }
 

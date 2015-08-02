@@ -22,7 +22,7 @@ public class NameCheckerAgent {
     }
 
     static public boolean check(String name) throws Exception {
-        System.out.println("Agent.check : "+ name);
+        System.out.println("NameCheckerAgent.check : "+ name);
         if(name.equals("Dr.No"))
             throw new Exception("Wrong Name! "+ name);
         return true;
